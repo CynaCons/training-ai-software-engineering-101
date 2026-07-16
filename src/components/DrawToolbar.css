@@ -1,0 +1,43 @@
+.draw-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.draw-toolbar__tools {
+  display: flex;
+  gap: 0.25rem;
+  padding: 3px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+}
+
+.draw-toolbar button {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  border-radius: 999px;
+  color: var(--text-muted);
+  transition: color 0.2s, background 0.2s;
+}
+
+.draw-toolbar button.is-active {
+  background: var(--warm-dim);
+  color: var(--warm);
+}
+
+.draw-toolbar button:hover:not(:disabled) {
+  color: var(--text);
+}
+
+.draw-toolbar button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.draw-toolbar__divider {
+  width: 1px;
+  height: 20px;
+  background: var(--panel-border);
+}

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export type SlideVariant = "title" | "default" | "diagram" | "split";
+export type SlideVariant = "title" | "default" | "diagram" | "split" | "compare";
 
 export interface SlideData {
   id: string;

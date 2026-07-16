@@ -1,0 +1,27 @@
+.drawing-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.drawing-overlay--active {
+  pointer-events: auto;
+  cursor: crosshair;
+}
+
+.drawing-overlay--eraser.drawing-overlay--active {
+  cursor: none;
+}
+
+.drawing-overlay__eraser-ring {
+  fill: rgba(255, 255, 255, 0.12);
+  stroke: var(--text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  pointer-events: none;
+}

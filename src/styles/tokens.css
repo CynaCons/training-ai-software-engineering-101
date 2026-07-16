@@ -19,10 +19,11 @@
   --font-body: "Outfit", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* Spacing & layout */
-  --slide-width: 960px;
-  --slide-height: 540px;
+  /* Spacing & layout — 16:9, larger for training rooms */
+  --slide-width: 1280px;
+  --slide-height: 720px;
   --canvas-gap: 80px;
+  --outline-width: 240px;
   --radius: 12px;
   --radius-sm: 8px;
 

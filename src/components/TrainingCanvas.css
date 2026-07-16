@@ -44,10 +44,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--panel-border);
   background: rgba(12, 17, 24, 0.8);
   backdrop-filter: blur(12px);
+}
+
+.training-canvas__body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.training-canvas__viewport--drawing {
+  cursor: crosshair;
 }
 
 .training-canvas__brand {
@@ -106,14 +119,51 @@
 }
 
 .training-canvas__viewport--canvas {
+  overflow: auto;
   cursor: grab;
   background-image:
     radial-gradient(circle at center, var(--grid-line) 1px, transparent 1px);
   background-size: 32px 32px;
+
+  /* Firefox */
+  scrollbar-width: auto;
+  scrollbar-color: var(--accent) var(--panel);
 }
 
 .training-canvas__viewport--canvas:active {
   cursor: grabbing;
+}
+
+/* Chromium / Safari / Edge — canvas scrollbars */
+.training-canvas__viewport--canvas::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+.training-canvas__viewport--canvas::-webkit-scrollbar-track {
+  background: var(--ink);
+  border: 1px solid var(--panel-border);
+}
+
+.training-canvas__viewport--canvas::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(61, 214, 198, 0.55),
+    rgba(61, 214, 198, 0.35)
+  );
+  border: 3px solid var(--ink);
+  border-radius: 10px;
+  min-height: 40px;
+  min-width: 40px;
+}
+
+.training-canvas__viewport--canvas::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+.training-canvas__viewport--canvas::-webkit-scrollbar-corner {
+  background: var(--ink);
+  border: 1px solid var(--panel-border);
 }
 
 .training-canvas__present {
@@ -124,13 +174,13 @@
   height: 100%;
 }
 
+.training-canvas__scroll-space {
+  position: relative;
+}
+
 .training-canvas__grid {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform-origin: center center;
-  margin-left: calc(-1 * (960px + 80px) / 2);
-  margin-top: calc(-1 * (540px + 80px) / 2);
+  position: relative;
+  transform-origin: 0 0;
   will-change: transform;
 }
 
@@ -197,7 +247,7 @@
 .training-canvas__hint {
   position: absolute;
   bottom: 4.5rem;
-  left: 50%;
+  left: calc(50% + var(--outline-width) / 2);
   transform: translateX(-50%);
   margin: 0;
   font-family: var(--font-mono);
@@ -206,6 +256,12 @@
   opacity: 0.6;
   pointer-events: none;
   white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .training-canvas__hint {
+    left: 50%;
+  }
 }
 
 @media (max-width: 700px) {
