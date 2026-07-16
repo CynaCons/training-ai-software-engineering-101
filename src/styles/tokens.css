@@ -1,0 +1,38 @@
+:root {
+  /* Blueprint Workshop palette */
+  --ink: #0c1118;
+  --surface: #121a24;
+  --panel: #182230;
+  --panel-border: #2a3a4f;
+  --grid-line: rgba(72, 120, 168, 0.12);
+  --text: #e8edf4;
+  --text-muted: #8fa3bc;
+  --accent: #3dd6c6;
+  --accent-dim: rgba(61, 214, 198, 0.15);
+  --accent-glow: rgba(61, 214, 198, 0.35);
+  --warm: #f0a84b;
+  --warm-dim: rgba(240, 168, 75, 0.12);
+  --danger: #f07178;
+
+  /* Typography */
+  --font-display: "Syne", system-ui, sans-serif;
+  --font-body: "Outfit", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Spacing & layout */
+  --slide-width: 960px;
+  --slide-height: 540px;
+  --canvas-gap: 80px;
+  --radius: 12px;
+  --radius-sm: 8px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration: 0.45s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration: 0.01s;
+  }
+}

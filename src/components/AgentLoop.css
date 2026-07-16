@@ -1,0 +1,112 @@
+.agent-loop {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  height: 100%;
+}
+
+.agent-loop__ring {
+  position: relative;
+  aspect-ratio: 1;
+  max-height: 280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.agent-loop__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.agent-loop__node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+  z-index: 1;
+}
+
+.agent-loop__node.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 0 24px var(--accent-glow);
+  background: var(--accent-dim);
+}
+
+.agent-loop__node-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.agent-loop__core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 1px dashed var(--panel-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agent-loop__core-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.agent-loop__detail {
+  padding: 1.5rem;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--accent);
+}
+
+.agent-loop__step-num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.agent-loop__detail h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.4rem 0 0.5rem;
+}
+
+.agent-loop__detail p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 700px) {
+  .agent-loop {
+    grid-template-columns: 1fr;
+  }
+}
