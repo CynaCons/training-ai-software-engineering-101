@@ -520,3 +520,21 @@
     padding-top: 1rem;
   }
 }
+
+/* Plain-language intro above a full-height diagram (LLM advanced) */
+.slide-lead--diagram {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  max-width: 78ch;
+  margin-bottom: 0.9rem;
+}
+
+.slide-lead--diagram strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.slide-lead--diagram em {
+  color: var(--accent);
+  font-style: normal;
+}

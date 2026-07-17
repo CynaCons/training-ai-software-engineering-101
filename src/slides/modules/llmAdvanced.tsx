@@ -57,63 +57,126 @@ export const llmAdvancedSlides: SlideData[] = [
     title: "Inside one block",
     eyebrow: "Concepts · advanced · residual + norm",
     variant: "diagram",
-    content: <TransformerBlock />,
+    content: (
+      <>
+        <p className="slide-lead slide-lead--diagram">
+          Every layer repeats the same two moves — <strong>mix context</strong> (attention), then <strong>process it</strong> (feed-forward) — with shortcut connections so hundreds of stacked layers still train. “Deeper model” just means more of these blocks.
+        </p>
+        <TransformerBlock />
+      </>
+    ),
   },
   {
     id: "llm-arch-qkv",
     title: "Q, K, V — scaled attention",
     eyebrow: "Concepts · advanced · attention math",
     variant: "diagram",
-    content: <QkvAttention />,
+    content: (
+      <>
+        <p className="slide-lead slide-lead--diagram">
+          Attention is a lookup: each token asks a <strong>question (Q)</strong>, offers a <strong>label (K)</strong> and <strong>content (V)</strong> — match strength decides what gets copied forward. That’s the whole formula; the rest is bookkeeping.
+        </p>
+        <QkvAttention />
+      </>
+    ),
   },
   {
     id: "llm-arch-mha",
     title: "Multi-head attention",
     eyebrow: "Concepts · advanced · parallel subspaces",
     variant: "diagram",
-    content: <MultiHeadAttention />,
+    content: (
+      <>
+        <p className="slide-lead slide-lead--diagram">
+          One attention pattern tracks one kind of relationship. Heads run <strong>many patterns in parallel</strong> — one on syntax, one on variable ↔ definition, one on error text. That’s how it juggles imports, types, and stack traces at once.
+        </p>
+        <MultiHeadAttention />
+      </>
+    ),
   },
   {
     id: "llm-arch-causal",
     title: "Causal mask",
     eyebrow: "Concepts · advanced · autoregression",
     variant: "diagram",
-    content: <CausalMask />,
+    content: (
+      <>
+        <p className="slide-lead slide-lead--diagram">
+          While training, a mask hides every token to the right — the model may <strong>never peek at the future</strong>. This is why generation runs strictly left to right, one token at a time, and can’t go back to fix earlier output.
+        </p>
+        <CausalMask />
+      </>
+    ),
   },
   {
     id: "llm-arch-families",
     title: "Three families → decoder-only",
     eyebrow: "Concepts · advanced · where chat lives",
     variant: "diagram",
-    content: <ModelFamilies />,
+    content: (
+      <>
+        <p className="slide-lead slide-lead--diagram">
+          The 2017 design split into three families; chat and coding models are all <strong>decoder-only</strong>. When a model card says “decoder-only transformer”, this is the shape it means.
+        </p>
+        <ModelFamilies />
+      </>
+    ),
   },
   {
     id: "llm-arch-positions",
     title: "Positions & RoPE",
     eyebrow: "Concepts · advanced · order without RNNs",
     variant: "diagram",
-    content: <PositionalSignal />,
+    content: (
+      <>
+        <p className="slide-lead slide-lead--diagram">
+          Attention alone is <strong>order-blind</strong> — “A calls B” and “B calls A” would look identical. Position signals are mixed into each token’s vector; RoPE rotates them so <em>relative</em> distance survives long contexts.
+        </p>
+        <PositionalSignal />
+      </>
+    ),
   },
   {
     id: "llm-arch-kvcache",
     title: "KV cache & context cost",
     eyebrow: "Concepts · advanced · inference",
     variant: "diagram",
-    content: <KvCache />,
+    content: (
+      <>
+        <p className="slide-lead slide-lead--diagram">
+          Without a cache, every new token would recompute attention over the whole history. The <strong>KV cache</strong> stores each token’s keys and values instead — it’s the memory that makes long context fast but expensive, and where context pricing comes from.
+        </p>
+        <KvCache />
+      </>
+    ),
   },
   {
     id: "llm-moe",
     title: "Mixture of Experts",
     eyebrow: "Concepts · advanced",
     variant: "diagram",
-    content: <MoERouter />,
+    content: (
+      <>
+        <p className="slide-lead slide-lead--diagram">
+          MoE swaps one giant feed-forward for <strong>many experts plus a router</strong> that picks a few per token — huge total capacity, small active compute. That’s the “xB total, yB active” line on modern model cards.
+        </p>
+        <MoERouter />
+      </>
+    ),
   },
   {
     id: "llm-training",
     title: "Pretrain · fine-tune · post-train",
     eyebrow: "Concepts · advanced",
     variant: "diagram",
-    content: <TrainingPipeline />,
+    content: (
+      <>
+        <p className="slide-lead slide-lead--diagram">
+          Three phases, one vocabulary: <strong>pretraining</strong> learns what text looks like, <strong>fine-tuning</strong> specialises it, <strong>post-training</strong> teaches it to behave. Knowing which phase does what tells you what a prompt can and can’t fix.
+        </p>
+        <TrainingPipeline />
+      </>
+    ),
   },
   {
     id: "llm-post-training",
