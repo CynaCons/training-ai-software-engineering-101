@@ -109,6 +109,8 @@ describe("smoke", () => {
       "methodology-arch-loop",
       "methodology-loop-engineering",
       "methodology-papers",
+      "methodology-notebooks",
+      "methodology-apps",
       "methodology-coordinator",
       "methodology-personalities",
       "methodology-skills",

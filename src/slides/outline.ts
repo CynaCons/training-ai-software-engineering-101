@@ -337,6 +337,22 @@ export const deckOutline: OutlineNode[] = [
         slideId: "methodology-papers",
       },
       {
+        id: "methodology-tooling",
+        label: "Rapid tooling",
+        children: [
+          {
+            id: "methodology-notebooks",
+            label: "Jupyter notebooks",
+            slideId: "methodology-notebooks",
+          },
+          {
+            id: "methodology-apps",
+            label: "Easy web & local apps",
+            slideId: "methodology-apps",
+          },
+        ],
+      },
+      {
         id: "methodology-orchestration",
         label: "Orchestration",
         children: [

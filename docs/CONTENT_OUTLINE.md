@@ -471,6 +471,38 @@ traceability):
 
 *Slide:* `methodology-papers`
 
+### F5d — Rapid tooling (owner, round 5)
+
+Two fast ways to build *just enough* to make progress — often better than a
+full app.
+
+#### Jupyter notebooks — `methodology-notebooks`
+
+- The owner's default sketchpad: **learn** (poke an API / library / dataset),
+  **visualize** (charts, tables, images inline), **evaluate & process data**,
+  and keep small **reusable mini-tools** (ipywidgets)
+- **Works natively with agents**: cell → run → read output → adjust is a tight
+  closed loop with no app to build; faster than scaffolding a UI
+- Teach it as: when you need to *know* or *see* something (not ship it), reach
+  for a notebook first
+
+#### Easy web & local apps — `methodology-apps`
+
+- Recommended stack: **React (+ Vite)** frontend — one skill for web and desktop
+- **Package to desktop:** **Tauri** (Rust backend · OS webview · tiny binary)
+  or **Electron** (Node.js · ships Chromium · max compatibility)
+- **Local web-app pattern:** a **Vite dev proxy** catches `/api/*` calls from
+  the frontend and forwards them to a real backend — e.g. **Python (FastAPI)** —
+  so the UI just does `fetch("/api/…")` with no CORS/port wiring:
+
+  ```ts
+  // vite.config.ts
+  server: { proxy: { "/api": "http://127.0.0.1:8000" } } // Python
+  ```
+
+- Dev vs ship: in the packaged app, bundle the backend as a Tauri sidecar /
+  Electron child process, or move logic into Rust commands (Tauri `invoke`)
+
 ### F5b — Orchestration patterns
 
 #### Coordinator pattern — `methodology-coordinator`

@@ -1,4 +1,5 @@
 import { AgentPersonalities } from "../../components/diagrams/AgentPersonalities";
+import { AppStack } from "../../components/diagrams/AppStack";
 import { ArchRequirement } from "../../components/diagrams/ArchRequirement";
 import { BrowserLoop } from "../../components/diagrams/BrowserLoop";
 import { BugToTest } from "../../components/diagrams/BugToTest";
@@ -10,6 +11,7 @@ import { FlowSteps } from "../../components/diagrams/FlowSteps";
 import { LoopEngineering } from "../../components/diagrams/LoopEngineering";
 import { PlanAccretion } from "../../components/diagrams/PlanAccretion";
 import { McpBridge } from "../../components/diagrams/McpBridge";
+import { NotebookSketch } from "../../components/diagrams/NotebookSketch";
 import { PapersToCode } from "../../components/diagrams/PapersToCode";
 import { ReferenceGrid } from "../../components/diagrams/ReferenceGrid";
 import { RefineSpiral } from "../../components/diagrams/RefineSpiral";
@@ -273,6 +275,20 @@ export const methodologySlides: SlideData[] = [
     eyebrow: "Methodology · research → code",
     variant: "diagram",
     content: <PapersToCode />,
+  },
+  {
+    id: "methodology-notebooks",
+    title: "Notebooks — the agent’s sketchpad",
+    eyebrow: "Methodology · rapid tooling",
+    variant: "diagram",
+    content: <NotebookSketch />,
+  },
+  {
+    id: "methodology-apps",
+    title: "Easy web & local apps",
+    eyebrow: "Methodology · rapid tooling",
+    variant: "diagram",
+    content: <AppStack />,
   },
   {
     id: "methodology-coordinator",
