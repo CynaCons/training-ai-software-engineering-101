@@ -83,6 +83,11 @@ export const deckOutline: OutlineNode[] = [
         slideId: "llm-arch-families",
       },
       {
+        id: "llm-open-weights",
+        label: "Open weights · Ollama",
+        slideId: "llm-open-weights",
+      },
+      {
         id: "llm-arch-positions",
         label: "Positions & RoPE",
         slideId: "llm-arch-positions",
@@ -188,6 +193,11 @@ export const deckOutline: OutlineNode[] = [
             label: "AGENTS.md & friends",
             slideId: "harness-instruction-files",
           },
+          {
+            id: "foundations-rag",
+            label: "RAG architecture",
+            slideId: "rag-architecture",
+          },
         ],
       },
     ],
@@ -257,6 +267,11 @@ export const deckOutline: OutlineNode[] = [
             label: "Iterate · don’t wipe",
             slideId: "methodology-loop",
           },
+          {
+            id: "methodology-self-updating",
+            label: "Self-updating .md files",
+            slideId: "methodology-self-updating",
+          },
         ],
       },
       {
@@ -299,6 +314,11 @@ export const deckOutline: OutlineNode[] = [
             slideId: "methodology-loop-engineering",
           },
         ],
+      },
+      {
+        id: "methodology-papers",
+        label: "Papers → code",
+        slideId: "methodology-papers",
       },
       {
         id: "methodology-orchestration",

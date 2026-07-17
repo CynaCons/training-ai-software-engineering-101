@@ -6,8 +6,10 @@ import { CoordinatorPattern } from "../../components/diagrams/CoordinatorPattern
 import { DocPreview } from "../../components/diagrams/DocPreview";
 import { FlowSteps } from "../../components/diagrams/FlowSteps";
 import { McpBridge } from "../../components/diagrams/McpBridge";
+import { PapersToCode } from "../../components/diagrams/PapersToCode";
 import { ReferenceGrid } from "../../components/diagrams/ReferenceGrid";
 import { RefineSpiral } from "../../components/diagrams/RefineSpiral";
+import { SelfUpdatingDocs } from "../../components/diagrams/SelfUpdatingDocs";
 import { SkillCapsule } from "../../components/diagrams/SkillCapsule";
 import type { SlideData } from "../types";
 
@@ -176,6 +178,13 @@ export const methodologySlides: SlideData[] = [
     ),
   },
   {
+    id: "methodology-self-updating",
+    title: "Agents that maintain their own memory",
+    eyebrow: "Methodology · self-reinforcing",
+    variant: "diagram",
+    content: <SelfUpdatingDocs />,
+  },
+  {
     id: "closing-the-loop",
     title: "Closing the loop",
     eyebrow: "Methodology · visibility",
@@ -285,6 +294,13 @@ export const methodologySlides: SlideData[] = [
         ]}
       />
     ),
+  },
+  {
+    id: "methodology-papers",
+    title: "From papers to implementations",
+    eyebrow: "Methodology · research → code",
+    variant: "diagram",
+    content: <PapersToCode />,
   },
   {
     id: "methodology-coordinator",

@@ -3,6 +3,7 @@ import { ComparePanels } from "../../components/diagrams/ComparePanels";
 import { ContextGauge } from "../../components/diagrams/ContextGauge";
 import { FlowSteps } from "../../components/diagrams/FlowSteps";
 import { MemoryStack } from "../../components/diagrams/MemoryStack";
+import { RagPipeline } from "../../components/diagrams/RagPipeline";
 import type { SlideData } from "../types";
 
 /** Slides that follow tool-calling: CLIs, request path, context/memory */
@@ -128,5 +129,12 @@ export const agenticLeapSlides: SlideData[] = [
         ]}
       />
     ),
+  },
+  {
+    id: "rag-architecture",
+    title: "RAG — retrieval as architecture",
+    eyebrow: "Context & memory · beyond the repo",
+    variant: "diagram",
+    content: <RagPipeline />,
   },
 ];

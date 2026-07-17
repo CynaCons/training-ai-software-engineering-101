@@ -4,6 +4,7 @@ import { KvCache } from "../../components/diagrams/KvCache";
 import { ModelFamilies } from "../../components/diagrams/ModelFamilies";
 import { MoERouter } from "../../components/diagrams/MoERouter";
 import { MultiHeadAttention } from "../../components/diagrams/MultiHeadAttention";
+import { OpenWeights } from "../../components/diagrams/OpenWeights";
 import { PositionalSignal } from "../../components/diagrams/PositionalSignal";
 import { QkvAttention } from "../../components/diagrams/QkvAttention";
 import { TrainingPipeline } from "../../components/diagrams/TrainingPipeline";
@@ -119,6 +120,23 @@ export const llmAdvancedSlides: SlideData[] = [
           The 2017 design split into three families; chat and coding models are all <strong>decoder-only</strong>. When a model card says “decoder-only transformer”, this is the shape it means.
         </p>
         <ModelFamilies />
+      </>
+    ),
+  },
+  {
+    id: "llm-open-weights",
+    title: "Open weights — run it yourself",
+    eyebrow: "Concepts · advanced · ecosystem",
+    variant: "diagram",
+    content: (
+      <>
+        <p className="slide-lead slide-lead--diagram">
+          Not every model lives behind an API. <strong>Open-weights</strong>{" "}
+          families publish their parameters, and tools like{" "}
+          <strong>Ollama</strong> run them on your own hardware — a different
+          set of trade-offs, not a lesser copy.
+        </p>
+        <OpenWeights />
       </>
     ),
   },
