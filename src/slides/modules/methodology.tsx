@@ -1,10 +1,14 @@
 import { AgentPersonalities } from "../../components/diagrams/AgentPersonalities";
 import { ArchRequirement } from "../../components/diagrams/ArchRequirement";
+import { BrowserLoop } from "../../components/diagrams/BrowserLoop";
+import { BugToTest } from "../../components/diagrams/BugToTest";
 import { CloseTheLoop } from "../../components/diagrams/CloseTheLoop";
 import { ComparePanels } from "../../components/diagrams/ComparePanels";
 import { CoordinatorPattern } from "../../components/diagrams/CoordinatorPattern";
 import { DocPreview } from "../../components/diagrams/DocPreview";
 import { FlowSteps } from "../../components/diagrams/FlowSteps";
+import { LoopEngineering } from "../../components/diagrams/LoopEngineering";
+import { PlanAccretion } from "../../components/diagrams/PlanAccretion";
 import { McpBridge } from "../../components/diagrams/McpBridge";
 import { PapersToCode } from "../../components/diagrams/PapersToCode";
 import { ReferenceGrid } from "../../components/diagrams/ReferenceGrid";
@@ -163,19 +167,7 @@ export const methodologySlides: SlideData[] = [
     title: "Iterate until you’re satisfied",
     eyebrow: "Methodology · rhythm",
     variant: "diagram",
-    content: (
-      <FlowSteps
-        label="Loop product iterations; new ideas become new PLAN.md rows; never wipe the plan"
-        caption="New idea → add an iteration to PLAN.md. Keep the plan lean (compress when needed) but don’t clear it — agents keep project context without reverse-engineering git."
-        steps={[
-          { label: "Ship slice", detail: "Works + looks right" },
-          { label: "Review", detail: "Satisfied?" },
-          { label: "New idea", detail: "Append iteration", tone: "warm" },
-          { label: "Compress", detail: "Lean, never wipe", tone: "muted" },
-          { label: "Continue", detail: "Context stays in PLAN", tone: "accent" },
-        ]}
-      />
-    ),
+    content: <PlanAccretion />,
   },
   {
     id: "methodology-self-updating",
@@ -196,38 +188,14 @@ export const methodologySlides: SlideData[] = [
     title: "See it in the browser",
     eyebrow: "Methodology · closing the loop",
     variant: "diagram",
-    content: (
-      <FlowSteps
-        label="For web and desktop apps, agent drives a browser to verify behaviour"
-        caption="Give the agent a way to manipulate the UI and check that behaviour matches your criteria — not only that the code compiled."
-        steps={[
-          { label: "Criteria", detail: "You define done-when", tone: "warm" },
-          { label: "Build", detail: "Agent implements" },
-          { label: "Drive UI", detail: "Browser / desktop tools", tone: "accent" },
-          { label: "Observe", detail: "Screens · console · DOM" },
-          { label: "Judge", detail: "Pass vs criteria", tone: "warm" },
-        ]}
-      />
-    ),
+    content: <BrowserLoop />,
   },
   {
     id: "methodology-bug-tdd",
     title: "Bugs → failing tests first",
     eyebrow: "Methodology · closing the loop",
     variant: "diagram",
-    content: (
-      <FlowSteps
-        label="Reproduce bugs with a test, then fix until the test passes"
-        caption="Test-driven in spirit: you found the bug — the agent designs a test that catches it, fixes the code, and proves the bug is gone."
-        steps={[
-          { label: "You find bug", detail: "Real failure path", tone: "warm" },
-          { label: "Write test", detail: "Reproduces how you found it" },
-          { label: "Red", detail: "Test fails on purpose", tone: "muted" },
-          { label: "Fix", detail: "Agent patches code" },
-          { label: "Green", detail: "Test proves lift", tone: "accent" },
-        ]}
-      />
-    ),
+    content: <BugToTest />,
   },
   {
     id: "methodology-embedded-loop",
@@ -281,19 +249,7 @@ export const methodologySlides: SlideData[] = [
     title: "Loop engineering",
     eyebrow: "Methodology · closing the loop",
     variant: "diagram",
-    content: (
-      <FlowSteps
-        label="With a closed loop, set goals and let the agent iterate indefinitely toward them"
-        caption="Visibility + evaluation unlocks loop engineering: goals in, agent iterates without waiting for you to eyeball every change — you still own criteria and interrupts."
-        steps={[
-          { label: "Goals", detail: "Criteria & constraints", tone: "warm" },
-          { label: "Act", detail: "Change the system" },
-          { label: "Observe", detail: "Closed-loop sensors", tone: "accent" },
-          { label: "Evaluate", detail: "Vs goals" },
-          { label: "Repeat", detail: "Until satisfied / stop", tone: "warm" },
-        ]}
-      />
-    ),
+    content: <LoopEngineering />,
   },
   {
     id: "methodology-papers",
