@@ -1,6 +1,6 @@
 # PLAN.md — AI Software Engineering 101
 
-## Iteration: feedback round 3 (2026-07-17) — PLANNED
+## Iteration: feedback round 3 (2026-07-17) — COMPLETE
 
 Owner feedback (photo of review notes, 12 points): six content additions
 (self-updating .md files, RAG, papers→implementation, timeline to July 2026,
@@ -11,15 +11,15 @@ Agentic-foundations narrative order).
 
 ### Workstream 1 — quick fixes (small, independent)
 
-- [ ] **Timeline → July 2026** (`src/components/diagrams/EvolutionTimeline.tsx`):
+- [x] **Timeline → July 2026** (`src/components/diagrams/EvolutionTimeline.tsx`):
       extend the 2017→2025 arc with 2026 milestones (frontier reasoning models,
       multi-agent orchestration going mainstream, agent-native tooling); move the
       "you are here" pulse to Jul 2026. Also sweep other slides that say the story
       stops in 2025 (aria-labels, captions, `LandmarkPapers` if needed).
-- [ ] **Agent Loop misalignment** (`src/components/AgentLoop.tsx` + `.css`):
+- [x] **Agent Loop misalignment** (`src/components/AgentLoop.tsx` + `.css`):
       reproduce in browser at 1280×720, fix the phase-ring / trace layout drift,
       re-screenshot in present mode to confirm.
-- [ ] **Parameters in LLM basics** (`src/slides/modules/llmBasics.tsx`):
+- [x] **Parameters in LLM basics** (`src/slides/modules/llmBasics.tsx`):
       introduce "parameters" and "number of parameters" where transformers are
       taught — weights as learned knobs, what 7B vs 70B vs ~1T actually means for
       capability/cost. Either a strip added to `TransformerStack` or a small new
@@ -27,27 +27,27 @@ Agentic-foundations narrative order).
 
 ### Workstream 2 — Agentic foundations narrative reorder (owner's arc)
 
-- [ ] Restructure the chapter opening to the owner's causal story:
+- [x] Restructure the chapter opening to the owner's causal story:
       **(1)** models got good at outputting tokens → **(2)** we taught them to
       follow rules (instruction tuning) → **(3)** we taught them to emit JSON
       tool calls → **(4)** harnesses gave them file edits + bash → agentic AI.
-- [ ] New or reworked bridge slide (e.g. `tokens-to-agents` staircase diagram,
+- [x] New or reworked bridge slide (e.g. `tokens-to-agents` staircase diagram,
       one step per stage above) placed at the start of foundations; reorder
       existing slides (`chat-vs-agent`, `what-is-agentic`, `tool-calling`,
       `tools-reality`, `turn-loop`) to follow that arc instead of leading with
       definitions.
-- [ ] Sync `src/slides/index.tsx`, `outline.ts`, `smoke.test.tsx`,
+- [x] Sync `src/slides/index.tsx`, `outline.ts`, `smoke.test.tsx`,
       `docs/CONTENT_OUTLINE.md`.
 
 ### Workstream 3 — LLM sections clarity
 
-- [ ] **"2017 architecture" rework** (`llm-arch-2017`, `EncoderDecoderArch.tsx`):
+- [x] **"2017 architecture" rework** (`llm-arch-2017`, `EncoderDecoderArch.tsx`):
       current encoder/decoder diagram doesn't land. Reframe as a story slide —
       "the 2017 Transformer had two towers; GPT-style models kept only the
       decoder" — with a plain-language column explaining *why we show this*
       (everything in LLM advanced is a refinement of this one diagram), and a
       visual crossfade from full architecture → decoder-only highlight.
-- [ ] **More text in LLM advanced** (`llmAdvanced.tsx` + its diagrams): add a
+- [x] **More text in LLM advanced** (`llmAdvanced.tsx` + its diagrams): add a
       consistent plain-language explainer column/caption ("what it is / why you
       care") to the diagram-only slides (QKV, multi-head, causal mask, positions,
       KV cache, MoE, training pipeline) per the AGENTS.md caption guidance —
@@ -55,36 +55,36 @@ Agentic-foundations narrative order).
 
 ### Workstream 4 — new content slides
 
-- [ ] **Open weights (Ollama)** — new LLM-advanced slide `llm-open-weights` next
+- [x] **Open weights (Ollama)** — new LLM-advanced slide `llm-open-weights` next
       to "Decoder-only families": open-weights ecosystem (Llama, Mistral, Qwen,
       DeepSeek), what "open weights ≠ open source" means, running locally with
       Ollama, tradeoffs (privacy/cost/control vs frontier capability).
-- [ ] **RAG architecture** — new slide near the foundations "Context & memory"
+- [x] **RAG architecture** — new slide near the foundations "Context & memory"
       group (`rag-architecture`): query → embed → vector search → top-k chunks
       into context → grounded answer; contrast with context-stuffing and
       agentic retrieval (grep/file-reads) so it connects to the CLI story.
-- [ ] **Papers → implementation** — new methodology slide
+- [x] **Papers → implementation** — new methodology slide
       (`methodology-papers`): the loop "find latest publications → evaluate
       which findings match our problem → prototype with the agent → keep or
       discard"; positions agents as the reason science-to-code latency collapsed.
       Add citations to `docs/REFERENCES.md`.
-- [ ] **Self-reinforcing .md files** — new methodology slide
+- [x] **Self-reinforcing .md files** — new methodology slide
       (`methodology-self-updating`, near "Iterate · don't wipe"): the agent
       updates its own AGENTS.md / CLAUDE.md / PLAN.md as it learns the project,
       so the next session inherits the lessons; this repo itself as the worked
       example. Cycle diagram: work → learn → write back → better next run.
-- [ ] Register all new ids in `index.tsx` + `outline.ts` + smoke; sync
+- [x] Register all new ids in `index.tsx` + `outline.ts` + smoke; sync
       `docs/CONTENT_OUTLINE.md`.
 
 ### Workstream 5 — methodology visual variety
 
-- [ ] **De-duplicate chart types**: 6 of 18 methodology slides render `FlowSteps`
+- [x] **De-duplicate chart types**: 6 of 18 methodology slides render `FlowSteps`
       (plan-mode, web-visibility, bug-tdd, embedded-loop, arch-loop,
       loop-engineering). Keep FlowSteps for at most 2; rebuild the rest as
       distinct interactive forms (e.g. bug-tdd as red→green test panel,
       web-visibility as browser+console split, embedded-loop as
       firmware↔sensor loop ring).
-- [ ] **Loop engineering visuals** (owner point 6): promote from a generic
+- [x] **Loop engineering visuals** (owner point 6): promote from a generic
       FlowSteps row to a dedicated `LoopEngineering` diagram — closed control
       loop (goals → act → observe → evaluate → repeat) drawn as an actual loop
       with a traveling pulse, DiagramPlaybar-driven, interrupt/stop node for the
@@ -92,10 +92,14 @@ Agentic-foundations narrative order).
 
 ### Verification & delivery
 
-- [ ] `npm run smoke` green after each workstream; browser pass over every
+- [x] `npm run smoke` green after each workstream; browser pass over every
       touched slide at 1280×720 (present mode), console clean.
-- [ ] Update `docs/CONTENT_OUTLINE.md` + `docs/REFERENCES.md` once at the end.
-- [ ] Commit per workstream on the working branch; push when owner approves.
+- [x] Update `docs/CONTENT_OUTLINE.md` + `docs/REFERENCES.md` once at the end.
+- [x] Commit per workstream on `claude/project-independence-c7479y`; pushed.
+- Notes: deck is now 60 slides; browser walk over all of them, console clean
+  (only the sandbox-blocked Google Fonts fetch fails). `methodology-papers`
+  teaches the practice without naming specific papers, so REFERENCES.md
+  needed no new citations.
 
 ## Iteration: feedback round 2 (2026-07-17)
 

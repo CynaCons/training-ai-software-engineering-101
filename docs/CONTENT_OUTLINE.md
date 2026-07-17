@@ -28,7 +28,8 @@ Topics to cover (order TBD while refining):
 - Brief timeline / inflection points (high level, not a history lecture)  
 
 *Slides in deck:* `landmark-papers` (anchor paper + follow-ons) ·
-`evolution-timeline` (2017 Transformer → 2025 coding agents, "you are here")
+`evolution-timeline` (2017 Transformer → Jul 2026 agent teams, "you are here";
+owner: timelines go to July 2026, not stopping 2025)
 - **Landmark publications** — especially Google’s Transformer paper  
 - From autocomplete → chat → tool-using agents  
 - What changed recently that unlocked agentic coding products  
@@ -94,6 +95,18 @@ Full citations: [`docs/REFERENCES.md`](REFERENCES.md). Slide in deck: `landmark-
 
 *Open questions:* diagrams vs metaphors; how much of the attention formula on-slide?
 
+### Parameters & scale (owner: was missing from basics)
+
+- A **parameter** = one learned number (weight) inside the network — attention
+  and FFN weights are parameters
+- “7B” = seven billion of them; the **count is capacity**
+- Scale ladder: ~1B (laptop) → ~8B (one GPU) → ~70B (server) → ~1T-class
+  (frontier / datacenter)
+- More parameters → more capacity but slower + costlier per token; data and
+  post-training decide how well the knobs are used
+
+*Slide in deck:* `llm-parameters`
+
 ---
 
 ## Part C — More advanced model concepts
@@ -109,8 +122,13 @@ Full citations: [`docs/REFERENCES.md`](REFERENCES.md). Slide in deck: `landmark-
 4. **Multi-head** — parallel subspaces, concat + project  
 5. **Causal mask** — autoregressive train + generate  
 6. **Families → decoder-only** — BERT / T5 / GPT-style; coding assistants live in decoder-only  
-7. **Positions & RoPE** — order without RNNs; rotary into Q/K  
-8. **KV cache & cost** — reuse past K/V; long context still costs  
+7. **Open weights (Ollama)** — Llama / Mistral / Qwen / DeepSeek / Gemma; open weights ≠ open source; Ollama-style local serving; privacy / cost / control vs frontier capability (`llm-open-weights`)  
+8. **Positions & RoPE** — order without RNNs; rotary into Q/K  
+9. **KV cache & cost** — reuse past K/V; long context still costs  
+
+Presentation note (owner, round 3): the 2017 slide is now story-driven
+(translation job → two towers → “GPT kept the decoder”), and every
+diagram-only slide in Part C carries a plain-language lead sentence.
 
 ### Mixture of Experts (MoE)
 
@@ -274,6 +292,14 @@ Emphasize: the remote model does **not** see your disk; only what the harness pa
 - Contain instructions + **links to other files** the model can load on demand  
 - Bootstrap, not the entire knowledge base  
 
+#### 5. RAG — retrieval as architecture — `rag-architecture`
+
+- Pipeline: query → embed → vector index → top-k chunks → grounded answer  
+- Contrast with **agentic retrieval**: coding CLIs mostly grep / list / open
+  files on demand inside the loop — retrieval as tool calls  
+- Same goal (right knowledge in context); RAG for large static corpora,
+  the agent loop for a living repo  
+
 ---
 
 ## Part E — Your job as the engineer
@@ -348,6 +374,17 @@ Diagram-led slides (not bullet dumps).
 
 *Slide:* `methodology-loop`
 
+### F4b — Self-reinforcing .md files (owner, round 3)
+
+- Agents **auto-update their own instruction files** as they learn the repo:
+  AGENTS.md rules, PLAN.md checkboxes, new pointers — in the same commit  
+- Next session auto-loads the updated files and starts smarter — memory that
+  compounds without retraining  
+- Worked example: this deck’s repo (AGENTS.md “update this file”, PLAN.md
+  iteration log)  
+
+*Slide:* `methodology-self-updating`
+
 ### F5 — Closing the loop (visibility + self-evaluation)
 
 **Intent:** You set final criteria; the agent needs **information and visibility** on its own work so it can **evaluate** progress.
@@ -398,7 +435,17 @@ Diagram-led slides (not bullet dumps).
 - With a closed loop: give a set of **goals**, ask the agent to **iterate indefinitely** toward them  
 - You still own criteria and interrupts  
 
-*Slide:* `methodology-loop-engineering`
+*Slide:* `methodology-loop-engineering` (dedicated control-loop schematic since round 3)
+
+### F5c — From papers to implementations (owner, round 3)
+
+- Agents collapse science-to-code latency: **look up the latest publications,
+  evaluate which findings match our problem, fit them to our problem**  
+- Loop: scan → evaluate fit (data / latency / licence / hardware) → prototype
+  in a branch → measure vs baseline → keep or drop  
+- Benchmarks decide, not the abstract’s claims  
+
+*Slide:* `methodology-papers`
 
 ### F5b — Orchestration patterns
 
