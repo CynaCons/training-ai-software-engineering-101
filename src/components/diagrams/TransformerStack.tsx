@@ -47,8 +47,8 @@ export function TransformerStack() {
             animate={{ y: step === 4 ? -3 : 0 }}
           >
             <span className="xstack__tag">Out</span>
-            <strong>Scores for every possible next token</strong>
-            <em>pick one · append it · run again</em>
+            <strong>A score for every possible next token</strong>
+            <em>→ softmax → probabilities · sample one · run again</em>
           </motion.div>
 
           <div className="xstack__flow" aria-hidden>
@@ -115,37 +115,41 @@ export function TransformerStack() {
               <code>picked</code>
               <code>…</code>
             </div>
+            <em>each token is already a vector of numbers</em>
           </motion.div>
         </div>
 
         {/* Static explainer — nothing here changes while it plays */}
         <div className="xstack__explain">
-          <h3>One simple block, stacked</h3>
+          <h3>What’s actually happening</h3>
           <ul>
             <li>
-              <strong>Attention</strong> — every word looks back and pulls in
-              the earlier words that matter (the previous slide).
+              <strong>Numbers, not rules</strong> — each token is a{" "}
+              <em>vector</em> (hundreds–thousands of floats). A block is{" "}
+              <em>matrix multiplications</em>, not if/else logic.
             </li>
             <li>
-              <strong>Feed-forward</strong> — then each word is processed on
-              its own: mix first, digest second.
+              <strong>Attention mixes tokens</strong> — every token’s vector
+              pulls in the others <em>across the whole sequence</em>, by a
+              weighted sum. This is where words relate to each other.
             </li>
             <li>
-              <strong>Stack it</strong> — the same block repeats N times;
-              each pass builds a richer understanding.
+              <strong>Feed-forward digests each</strong> — then every vector is
+              transformed <em>on its own</em> (multiply + a simple non-linear
+              step).
             </li>
             <li>
-              <strong>Top of the stack</strong> — score every candidate next
-              token, emit one, and run the whole thing again.
+              <strong>The statistics live in the weights</strong> — learned
+              from data. Running the model is fixed arithmetic that ends in a{" "}
+              <em>probability for every next token</em>.
             </li>
           </ul>
         </div>
       </div>
 
       <p className="xstack__caption">
-        That’s the entire trick. A modern LLM is this <strong>one block
-        repeated</strong> — “layers” on a model card = how many times — run
-        once per token it writes.
+        So it’s <strong>computation, not lookup</strong> — matrix math on token
+        vectors, one block repeated N times (the “layers” on a model card).
       </p>
     </div>
   );

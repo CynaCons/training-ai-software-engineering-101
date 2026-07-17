@@ -1108,9 +1108,133 @@
 .token-stream {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   height: 100%;
   justify-content: center;
+}
+
+.token-stream__main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+  align-items: stretch;
+}
+
+.token-stream__left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.token-stream__concrete {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+}
+
+.token-stream__concrete-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.token-stream__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.token-stream__row {
+  display: grid;
+  grid-template-columns: 4.6rem 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 0.7rem;
+  align-items: baseline;
+}
+
+.token-stream__k {
+  grid-row: 1 / span 2;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  align-self: center;
+}
+
+.token-stream__v {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text);
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.token-stream__row.is-key .token-stream__v {
+  color: var(--accent);
+  font-size: 1.05rem;
+}
+
+.token-stream__hint {
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+.token-stream__formula {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--panel-border);
+}
+
+.token-stream__formula code {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--text);
+}
+
+.token-stream__formula code b {
+  color: var(--warm);
+  font-weight: 500;
+}
+
+.token-stream__formula span {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.token-stream__caption {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  border-left: 3px solid var(--accent);
+  padding-left: 0.85rem;
+}
+
+.token-stream__caption strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.token-stream__caption em {
+  font-style: normal;
+  color: var(--text-muted);
+  opacity: 0.75;
+}
+
+@media (max-width: 1000px) {
+  .token-stream__main {
+    grid-template-columns: 1fr;
+  }
 }
 
 .token-stream__source {
@@ -1486,6 +1610,11 @@
 .xstack__explain li strong {
   color: var(--text);
   font-weight: 600;
+}
+
+.xstack__explain li em {
+  font-style: normal;
+  color: var(--accent);
 }
 
 .xstack__caption {
