@@ -11,7 +11,11 @@
 }
 
 .outline-nav__header {
-  padding: 0.85rem 1rem 0.65rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.85rem 0.85rem 0.65rem 1rem;
   border-bottom: 1px solid var(--panel-border);
 }
 
@@ -21,6 +25,30 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
+}
+
+.outline-nav__all {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.15rem 0.4rem;
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  background: transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.outline-nav__all:hover:not(:disabled) {
+  color: var(--accent);
+  border-color: rgba(61, 214, 198, 0.4);
+  background: var(--accent-dim);
+}
+
+.outline-nav__all:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .outline-nav__list {
@@ -74,11 +102,57 @@
   padding: 0;
 }
 
+.outline-nav__row {
+  display: flex;
+  align-items: stretch;
+}
+
+.outline-nav__row:has(.is-section) {
+  margin-top: 0.35rem;
+}
+
+.outline-nav__toggle {
+  flex: 0 0 auto;
+  width: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.outline-nav__toggle--spacer {
+  cursor: default;
+}
+
+.outline-nav__toggle:not(.outline-nav__toggle--spacer):hover:not(:disabled) {
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.outline-nav__toggle:disabled {
+  cursor: not-allowed;
+}
+
+.outline-nav__chevron {
+  display: inline-block;
+  font-size: 0.6rem;
+  line-height: 1;
+  transition: transform 0.18s ease;
+}
+
+.outline-nav__chevron.is-open {
+  transform: rotate(90deg);
+}
+
 .outline-nav__item {
-  width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
   display: block;
   text-align: left;
-  padding: 0.4rem 0.75rem;
+  padding: 0.4rem 0.6rem;
   font-size: 0.8rem;
   line-height: 1.35;
   color: var(--text-muted);
@@ -92,7 +166,6 @@
   font-size: 0.78rem;
   letter-spacing: 0.02em;
   color: var(--text);
-  margin-top: 0.35rem;
 }
 
 .outline-nav__item:hover:not(:disabled) {
