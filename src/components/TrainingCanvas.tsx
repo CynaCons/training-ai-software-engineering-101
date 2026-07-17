@@ -192,9 +192,16 @@ export function TrainingCanvas({ slides }: TrainingCanvasProps) {
     index: number,
     isActive: boolean,
     onClick?: () => void,
+    reveal = false,
   ) => (
     <SlideFrame slideId={slide.id}>
-      <SlideCard slide={slide} index={index} isActive={isActive} onClick={onClick} />
+      <SlideCard
+        slide={slide}
+        index={index}
+        isActive={isActive}
+        reveal={reveal}
+        onClick={onClick}
+      />
     </SlideFrame>
   );
 
@@ -258,7 +265,7 @@ export function TrainingCanvas({ slides }: TrainingCanvasProps) {
                 exit={{ opacity: 0, x: -40 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
-                {renderSlide(activeSlide, activeIndex, true)}
+                {renderSlide(activeSlide, activeIndex, true, undefined, true)}
               </motion.div>
             </AnimatePresence>
           ) : (

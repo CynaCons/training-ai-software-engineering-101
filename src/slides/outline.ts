@@ -20,6 +20,11 @@ export const deckOutline: OutlineNode[] = [
         label: "Landmark papers",
         slideId: "landmark-papers",
       },
+      {
+        id: "start-evolution",
+        label: "From paper to agents",
+        slideId: "evolution-timeline",
+      },
     ],
   },
   {
@@ -43,9 +48,44 @@ export const deckOutline: OutlineNode[] = [
         slideId: "llm-advanced-open",
       },
       {
-        id: "llm-transformers-deep",
-        label: "Transformers deeper",
-        slideId: "llm-transformers-deep",
+        id: "llm-arch-2017",
+        label: "2017 architecture",
+        slideId: "llm-arch-2017",
+      },
+      {
+        id: "llm-arch-block",
+        label: "One block",
+        slideId: "llm-arch-block",
+      },
+      {
+        id: "llm-arch-qkv",
+        label: "QKV scaled attention",
+        slideId: "llm-arch-qkv",
+      },
+      {
+        id: "llm-arch-mha",
+        label: "Multi-head",
+        slideId: "llm-arch-mha",
+      },
+      {
+        id: "llm-arch-causal",
+        label: "Causal mask",
+        slideId: "llm-arch-causal",
+      },
+      {
+        id: "llm-arch-families",
+        label: "Decoder-only families",
+        slideId: "llm-arch-families",
+      },
+      {
+        id: "llm-arch-positions",
+        label: "Positions & RoPE",
+        slideId: "llm-arch-positions",
+      },
+      {
+        id: "llm-arch-kvcache",
+        label: "KV cache & cost",
+        slideId: "llm-arch-kvcache",
       },
       { id: "llm-moe", label: "Mixture of Experts", slideId: "llm-moe" },
       {
@@ -75,19 +115,34 @@ export const deckOutline: OutlineNode[] = [
         slideId: "what-is-agentic",
       },
       {
-        id: "foundations-loop",
-        label: "The agent loop",
-        slideId: "agent-loop",
-      },
-      {
-        id: "foundations-context-early",
-        label: "Context is the product",
-        slideId: "context-product",
+        id: "foundations-tool-calling",
+        label: "Tool calling",
+        slideId: "tool-calling",
       },
       {
         id: "foundations-tools",
         label: "Tools that touch reality",
         slideId: "tools-reality",
+      },
+      {
+        id: "foundations-turn-loop",
+        label: "Turn-based autonomy",
+        slideId: "turn-loop",
+      },
+      {
+        id: "foundations-loop",
+        label: "The agent loop",
+        slideId: "agent-loop",
+      },
+      {
+        id: "foundations-failures",
+        label: "Failure modes",
+        slideId: "failure-modes",
+      },
+      {
+        id: "foundations-context-early",
+        label: "Context is the product",
+        slideId: "context-product",
       },
       {
         id: "foundations-cli",
@@ -236,6 +291,22 @@ export const deckOutline: OutlineNode[] = [
         ],
       },
       {
+        id: "methodology-orchestration",
+        label: "Orchestration",
+        children: [
+          {
+            id: "methodology-coordinator",
+            label: "Coordinator pattern",
+            slideId: "methodology-coordinator",
+          },
+          {
+            id: "methodology-personalities",
+            label: "Agent personalities",
+            slideId: "methodology-personalities",
+          },
+        ],
+      },
+      {
         id: "methodology-skills-mcp",
         label: "Skills & MCP",
         children: [
@@ -251,32 +322,6 @@ export const deckOutline: OutlineNode[] = [
           },
         ],
       },
-    ],
-  },
-  {
-    id: "practice",
-    label: "Practice",
-    children: [
-      { id: "practice-hitl", label: "Human in the loop", slideId: "human-in-loop" },
-      { id: "practice-modes", label: "Modes of work", slideId: "modes-of-work" },
-      { id: "practice-prompt", label: "Prompt shape", slideId: "prompt-shape" },
-      { id: "practice-repo", label: "Repo grounding", slideId: "repo-grounding" },
-      { id: "practice-sizing", label: "Task sizing", slideId: "task-sizing" },
-      { id: "practice-verify", label: "Verify", slideId: "verify" },
-    ],
-  },
-  {
-    id: "ops",
-    label: "Ops & close",
-    children: [
-      { id: "ops-fail", label: "Failure modes", slideId: "failure-modes" },
-      { id: "ops-recovery", label: "Recovery patterns", slideId: "recovery" },
-      { id: "ops-subagents", label: "Subagents", slideId: "subagents" },
-      { id: "ops-mcp", label: "MCP in practice", slideId: "mcp-practice" },
-      { id: "ops-team", label: "Team habits", slideId: "team-habits" },
-      { id: "ops-walkthrough", label: "Walkthrough", slideId: "walkthrough" },
-      { id: "ops-cheatsheet", label: "Cheatsheet", slideId: "cheatsheet" },
-      { id: "ops-close", label: "Practice challenge", slideId: "close" },
     ],
   },
 ];

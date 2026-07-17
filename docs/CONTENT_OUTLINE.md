@@ -3,8 +3,8 @@
 Working notes for the AI Software Engineering 101 curriculum.  
 Refine section by section — this is the source of truth for *what to teach*, not final slide copy.
 
-**Status:** LLM basics + advanced are now in the deck (`llmBasics` / `llmAdvanced` modules), after landmark papers.  
-**Delivery target:** often longer than 50 min if all concept slides stay — mark a short path for live delivery.
+**Status:** LLM basics + advanced are in the deck (`llmBasics` / `llmAdvanced`). Advanced now includes a full transformer architecture arc (2017 stack → QKV → causal → decoder-only → RoPE → KV cache) before MoE/training.  
+**Delivery target:** often longer than 50 min if all concept slides stay — **short path: skip LLM advanced** (or jump from section open to MoE / post-train).
 
 ---
 
@@ -26,6 +26,9 @@ Topics to cover (order TBD while refining):
 
 - Why language models matter for software work  
 - Brief timeline / inflection points (high level, not a history lecture)  
+
+*Slides in deck:* `landmark-papers` (anchor paper + follow-ons) ·
+`evolution-timeline` (2017 Transformer → 2025 coding agents, "you are here")
 - **Landmark publications** — especially Google’s Transformer paper  
 - From autocomplete → chat → tool-using agents  
 - What changed recently that unlocked agentic coding products  
@@ -95,19 +98,24 @@ Full citations: [`docs/REFERENCES.md`](REFERENCES.md). Slide in deck: `landmark-
 
 ## Part C — More advanced model concepts
 
-**Intent:** Go one level deeper for engineers who will debug agent behavior and read model cards.
+**Intent:** Engineer-depth architecture + training vocabulary for debugging agent behaviour and reading model cards.  
+**Short path:** skip this whole section, or keep only MoE + post-training.
 
-### Transformers (deeper)
+### Transformer architecture (in deck)
 
-- Encoder / decoder / decoder-only patterns (as relevant to chat & coding models)  
-- Attention heads, layers — enough to demystify “the model looked at…”  
-- Limits: context length, attention cost (intuition)  
+1. **2017 encoder–decoder** — self-attn + FFN stacks; decoder adds cross-attn + causal mask (Vaswani Fig. 1)  
+2. **One block** — MHA → Add&Norm → FFN → Add&Norm (residuals + LayerNorm)  
+3. **QKV / scaled attention** — `softmax(QKᵀ/√dₖ)V`  
+4. **Multi-head** — parallel subspaces, concat + project  
+5. **Causal mask** — autoregressive train + generate  
+6. **Families → decoder-only** — BERT / T5 / GPT-style; coding assistants live in decoder-only  
+7. **Positions & RoPE** — order without RNNs; rotary into Q/K  
+8. **KV cache & cost** — reuse past K/V; long context still costs  
 
 ### Mixture of Experts (MoE)
 
-- Not every parameter fires for every token  
-- Routers send tokens to specialist “experts”  
-- Why: scale capacity without full dense compute on every forward pass  
+- Sparse experts replace dense FFN slots; router activates a few per token  
+- Scale capacity without full dense compute on every forward pass  
 - Practical implication: behavior can feel uneven across domains  
 
 ### Pretraining
@@ -156,6 +164,9 @@ Be precise in slides — people overload “training”:
    - return results as new context (observations)  
    - loop until final answer or stop  
 4. **Agent loop** = model ↔ harness ↔ tools ↔ observations  
+
+*Slides in deck:* `tool-calling` (mechanism, JSON → harness) · `tools-reality`
+(read → change → operate arc) · `turn-loop` (turn-based autonomy + contrast)
 
 ### Evolution in coding agents (owner narrative — keep this arc)
 
@@ -378,6 +389,19 @@ Diagram-led slides (not bullet dumps).
 
 *Slide:* `methodology-loop-engineering`
 
+### F5b — Orchestration patterns
+
+#### Coordinator pattern — `methodology-coordinator`
+- **Manager of agents:** one agent owns the mission, delegates to specialists, integrates results  
+- **Campaign loop (single agent):** e.g. run automated tests → poll results → check plausibility → fix & log → restart → continue until full campaign  
+
+#### Agent personalities — `methodology-personalities`
+- Stable instruction sets + scoped context (architect / implementer / tester / PM)  
+- Keeps each agent’s window unpolluted by other roles’ noise  
+
+#### More patterns (TBD)
+- Owner will add another orchestration pattern after review — leave a slide slot when ready  
+
 ### F6 — Skills & MCP
 
 #### Skills — `methodology-skills`
@@ -401,16 +425,20 @@ Diagram-led slides (not bullet dumps).
 
 
 
-## Part G — Software engineering practice (existing deck material)
+## Part G — Software engineering practice (REMOVED from deck, 2026-07-17)
 
-Keep and reorder after Parts A–E. Current modules in `src/slides/modules/` cover:
+The Practice and Ops & close chapters were removed from the delivered deck by
+owner decision (out of scope for this training). The deck now ends after
+Methodology → Skills & MCP. The old modules (`practice.tsx`, `ops.tsx`) are
+recoverable from git history if a future variant needs them:
 
 - Human in the loop, modes (Ask / Plan / Agent), prompt shape  
 - Repo grounding, task sizing, verify  
 - Failure modes, recovery, subagents, MCP, team habits  
 - Walkthrough, cheatsheet, practice challenge  
 
-*Visual rule:* prefer diagrams / flows over bullet-only slides where the idea is a process or contrast.
+*Visual rule (still applies deck-wide):* prefer diagrams / flows over
+bullet-only slides where the idea is a process or contrast.
 
 ---
 
@@ -446,9 +474,9 @@ Keep and reorder after Parts A–E. Current modules in `src/slides/modules/` cov
 ## Refinement checklist
 
 - [x] LLM basics in deck (LLM, tokens, attention, transformers)  
-- [x] LLM advanced in deck (deeper transformers, MoE, training vocabulary, post-training)  
+- [x] LLM advanced in deck (architecture arc, MoE, training vocabulary, post-training)  
 - [ ] Glossary slide: token, attention, context, pretrain, post-train, tool call, harness, turn  
-- [ ] Timed short path (skip advanced in 45-min delivery)  
+- [x] Timed short path noted (skip LLM advanced in ~50-min delivery)  
 - [ ] Live demo beat for closing the loop 
 
 ---

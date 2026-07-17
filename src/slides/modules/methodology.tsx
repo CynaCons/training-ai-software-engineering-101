@@ -1,6 +1,8 @@
+import { AgentPersonalities } from "../../components/diagrams/AgentPersonalities";
 import { ArchRequirement } from "../../components/diagrams/ArchRequirement";
 import { CloseTheLoop } from "../../components/diagrams/CloseTheLoop";
 import { ComparePanels } from "../../components/diagrams/ComparePanels";
+import { CoordinatorPattern } from "../../components/diagrams/CoordinatorPattern";
 import { DocPreview } from "../../components/diagrams/DocPreview";
 import { FlowSteps } from "../../components/diagrams/FlowSteps";
 import { McpBridge } from "../../components/diagrams/McpBridge";
@@ -283,6 +285,20 @@ export const methodologySlides: SlideData[] = [
         ]}
       />
     ),
+  },
+  {
+    id: "methodology-coordinator",
+    title: "The coordinator pattern",
+    eyebrow: "Methodology · orchestration",
+    variant: "diagram",
+    content: <CoordinatorPattern />,
+  },
+  {
+    id: "methodology-personalities",
+    title: "Agent personalities",
+    eyebrow: "Methodology · orchestration",
+    variant: "diagram",
+    content: <AgentPersonalities />,
   },
   {
     id: "methodology-skills",

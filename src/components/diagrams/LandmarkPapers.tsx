@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from "framer-motion";
 import "./diagrams.css";
 
 const PAPERS = [
@@ -35,21 +36,45 @@ const PAPERS = [
   },
 ] as const;
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 export function LandmarkPapers() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <div
       className="landmark-papers"
-      role="img"
+      role="group"
       aria-label="Landmark papers from the Transformer to modern LLMs"
     >
-      <div className="landmark-papers__rail" aria-hidden />
+      <div className="landmark-papers__timeline" aria-hidden>
+        <motion.i
+          className="landmark-papers__line"
+          initial={reduceMotion ? false : { scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.1, ease: EASE }}
+        />
+        {PAPERS.map((paper, i) => (
+          <div key={paper.year} className="landmark-papers__tick">
+            <motion.span
+              className={`landmark-papers__dot ${paper.highlight ? "is-highlight" : ""}`}
+              initial={reduceMotion ? false : { scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.25 * i + 0.15, duration: 0.35, ease: EASE }}
+            />
+            <span className="landmark-papers__year">{paper.year}</span>
+          </div>
+        ))}
+      </div>
       <ol className="landmark-papers__list">
-        {PAPERS.map((paper) => (
-          <li
+        {PAPERS.map((paper, i) => (
+          <motion.li
             key={paper.title}
             className={`landmark-papers__card ${paper.highlight ? "is-highlight" : ""}`}
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 * i + 0.2, duration: 0.45, ease: EASE }}
           >
-            <span className="landmark-papers__year">{paper.year}</span>
             <strong>{paper.title}</strong>
             <span className="landmark-papers__org">{paper.org}</span>
             <span className="landmark-papers__why">{paper.why}</span>
@@ -61,7 +86,7 @@ export function LandmarkPapers() {
             >
               arXiv
             </a>
-          </li>
+          </motion.li>
         ))}
       </ol>
       <p className="landmark-papers__caption">

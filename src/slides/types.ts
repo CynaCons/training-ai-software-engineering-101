@@ -7,5 +7,7 @@ export interface SlideData {
   title: string;
   eyebrow?: string;
   variant?: SlideVariant;
+  /** Chapter ordinal ("01"…) rendered as a watermark on section-open slides. */
+  chapterNo?: string;
   content: ReactNode;
 }

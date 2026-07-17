@@ -9,7 +9,7 @@ Short reading list for the “how we got here” section. Prefer linking arXiv a
 Google Brain / Google Research.  
 https://arxiv.org/abs/1706.03762  
 
-Introduces the **Transformer** architecture (attention-only, no recurrence). This is the major publication that enabled the current generation of LLMs.
+Introduces the **Transformer** architecture (attention-only, no recurrence). This is the major publication that enabled the current generation of LLMs. Primary source for the advanced architecture slides (encoder/decoder stacks, scaled dot-product attention, multi-head, residuals, positional encodings).
 
 ## Precursor — Attention for translation
 
@@ -43,6 +43,22 @@ Makes “scale + prompts” a mainstream product story.
 https://arxiv.org/abs/2203.02155  
 
 Example of **post-training** that turns base models into usable chat assistants (many labs followed similar ideas).
+
+## Positions — RoPE
+
+**Su, J., Lu, Y., Pan, S., Murtadha, A., Wen, B., & Liu, Y. (2021).**  
+*RoFormer: Enhanced Transformer with Rotary Position Embedding.*  
+https://arxiv.org/abs/2104.09864  
+
+**Rotary positional embeddings (RoPE)** — common in modern open LLMs; relative position baked into attention via rotations of Q/K.
+
+## Mixture of Experts (architecture note)
+
+**Fedus, W., Zoph, B., & Shazeer, N. (2021).**  
+*Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity.*  
+https://arxiv.org/abs/2101.03961  
+
+Sparse **MoE** routing (experts where FFN sits). Product examples of the pattern include Mixtral-class decoder-only MoE models.
 
 ## Optional later (agentic tooling)
 

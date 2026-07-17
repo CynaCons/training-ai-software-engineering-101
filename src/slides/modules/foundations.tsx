@@ -1,6 +1,11 @@
 import { AgentLoop } from "../../components/AgentLoop";
-import { FlowSteps } from "../../components/diagrams/FlowSteps";
+import { AgentEquation } from "../../components/diagrams/AgentEquation";
+import { EvolutionTimeline } from "../../components/diagrams/EvolutionTimeline";
+import { FailureModes } from "../../components/diagrams/FailureModes";
 import { LandmarkPapers } from "../../components/diagrams/LandmarkPapers";
+import { ToolCallBridge } from "../../components/diagrams/ToolCallBridge";
+import { ToolReach } from "../../components/diagrams/ToolReach";
+import { TurnLoop } from "../../components/diagrams/TurnLoop";
 import type { SlideData } from "../types";
 
 export const foundationsSlides: SlideData[] = [
@@ -80,6 +85,13 @@ export const foundationsSlides: SlideData[] = [
     content: <LandmarkPapers />,
   },
   {
+    id: "evolution-timeline",
+    title: "From paper to agents",
+    eyebrow: "How we got here · 2017 → today",
+    variant: "diagram",
+    content: <EvolutionTimeline />,
+  },
+  {
     id: "chat-vs-agent",
     title: "Completion, chat, agent",
     eyebrow: "Foundations",
@@ -121,19 +133,28 @@ export const foundationsSlides: SlideData[] = [
     title: "What is agentic AI?",
     eyebrow: "Foundations",
     variant: "diagram",
-    content: (
-      <FlowSteps
-        label="Agent pursues a goal with tools and observation"
-        caption="Not magic autonomy — a loop grounded in your repo until done or you stop it."
-        steps={[
-          { label: "Goal", detail: "Natural language intent" },
-          { label: "Plan", detail: "Break into steps" },
-          { label: "Tools", detail: "Files, shell, browser…" },
-          { label: "Observe", detail: "Results & errors" },
-          { label: "Adjust", detail: "Next action or stop", tone: "warm" },
-        ]}
-      />
-    ),
+    content: <AgentEquation />,
+  },
+  {
+    id: "tool-calling",
+    title: "From text to action — tool calling",
+    eyebrow: "Foundations · the bridge",
+    variant: "diagram",
+    content: <ToolCallBridge />,
+  },
+  {
+    id: "tools-reality",
+    title: "Tools that touch reality",
+    eyebrow: "Foundations",
+    variant: "diagram",
+    content: <ToolReach />,
+  },
+  {
+    id: "turn-loop",
+    title: "Turn-based autonomy",
+    eyebrow: "Foundations · the loop, mechanically",
+    variant: "diagram",
+    content: <TurnLoop />,
   },
   {
     id: "agent-loop",
@@ -141,6 +162,13 @@ export const foundationsSlides: SlideData[] = [
     eyebrow: "Core pattern",
     variant: "diagram",
     content: <AgentLoop />,
+  },
+  {
+    id: "failure-modes",
+    title: "Failure modes",
+    eyebrow: "Foundations · early warning",
+    variant: "diagram",
+    content: <FailureModes />,
   },
   {
     id: "context-product",
@@ -164,25 +192,6 @@ export const foundationsSlides: SlideData[] = [
           <span className="slide-pill">you own the mission</span>
         </div>
       </>
-    ),
-  },
-  {
-    id: "tools-reality",
-    title: "Tools that touch reality",
-    eyebrow: "Foundations",
-    variant: "diagram",
-    content: (
-      <FlowSteps
-        label="Agent tools that affect the real workspace"
-        caption="Every tool call is a side effect — treat the agent like a junior with workspace access. Prefer edit → test → fix."
-        steps={[
-          { label: "Read", detail: "Open source & docs" },
-          { label: "Search", detail: "Text + semantic" },
-          { label: "Edit", detail: "Change the repo", tone: "warm" },
-          { label: "Terminal", detail: "Build · test · scripts" },
-          { label: "MCP", detail: "External systems", tone: "muted" },
-        ]}
-      />
     ),
   },
 ];

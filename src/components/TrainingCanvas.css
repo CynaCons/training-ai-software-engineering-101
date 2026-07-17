@@ -27,6 +27,7 @@
   top: -10%;
   right: -5%;
   opacity: 0.12;
+  animation: glow-drift-a 28s ease-in-out infinite;
 }
 
 .training-canvas__glow--b {
@@ -36,6 +37,33 @@
   bottom: -15%;
   left: -5%;
   opacity: 0.08;
+  animation: glow-drift-b 34s ease-in-out infinite;
+}
+
+@keyframes glow-drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-70px, 50px) scale(1.15);
+  }
+}
+
+@keyframes glow-drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(60px, -40px) scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .training-canvas__glow {
+    animation: none;
+  }
 }
 
 .training-canvas__chrome {

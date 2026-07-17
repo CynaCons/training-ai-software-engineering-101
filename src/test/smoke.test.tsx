@@ -39,17 +39,32 @@ describe("smoke", () => {
     const sequence = [
       "open",
       "landmark-papers",
+      "evolution-timeline",
       "llm-basics-open",
       "llm-what",
       "llm-tokens",
       "llm-attention",
       "llm-transformers",
       "llm-advanced-open",
-      "llm-transformers-deep",
+      "llm-arch-2017",
+      "llm-arch-block",
+      "llm-arch-qkv",
+      "llm-arch-mha",
+      "llm-arch-causal",
+      "llm-arch-families",
+      "llm-arch-positions",
+      "llm-arch-kvcache",
       "llm-moe",
       "llm-training",
       "llm-post-training",
       "chat-vs-agent",
+      "what-is-agentic",
+      "tool-calling",
+      "tools-reality",
+      "turn-loop",
+      "agent-loop",
+      "failure-modes",
+      "context-product",
     ];
     const indexes = sequence.map((id) => ids.indexOf(id));
     for (const index of indexes) {
@@ -60,7 +75,7 @@ describe("smoke", () => {
     }
   });
 
-  it("includes CLI → context arc → engineer role before practice", () => {
+  it("includes CLI → context arc → engineer role through methodology", () => {
     const ids = slides.map((s) => s.id);
     const sequence = [
       "tools-reality",
@@ -86,9 +101,10 @@ describe("smoke", () => {
       "methodology-embedded-refs",
       "methodology-arch-loop",
       "methodology-loop-engineering",
+      "methodology-coordinator",
+      "methodology-personalities",
       "methodology-skills",
       "methodology-mcp",
-      "human-in-loop",
     ];
     const indexes = sequence.map((id) => ids.indexOf(id));
     for (const index of indexes) {
