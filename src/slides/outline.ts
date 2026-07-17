@@ -110,14 +110,9 @@ export const deckOutline: OutlineNode[] = [
     label: "Agentic foundations",
     children: [
       {
-        id: "foundations-modes",
-        label: "Completion · chat · agent",
-        slideId: "chat-vs-agent",
-      },
-      {
-        id: "foundations-agentic",
-        label: "What is agentic AI?",
-        slideId: "what-is-agentic",
+        id: "foundations-arc",
+        label: "How we got agents",
+        slideId: "tokens-to-agents",
       },
       {
         id: "foundations-tool-calling",
@@ -128,6 +123,16 @@ export const deckOutline: OutlineNode[] = [
         id: "foundations-tools",
         label: "Tools that touch reality",
         slideId: "tools-reality",
+      },
+      {
+        id: "foundations-agentic",
+        label: "What is agentic AI?",
+        slideId: "what-is-agentic",
+      },
+      {
+        id: "foundations-modes",
+        label: "Completion · chat · agent",
+        slideId: "chat-vs-agent",
       },
       {
         id: "foundations-turn-loop",

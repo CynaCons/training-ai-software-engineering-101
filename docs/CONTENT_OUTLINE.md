@@ -150,6 +150,17 @@ Be precise in slides — people overload “training”:
 
 **Intent:** Bridge from “model that writes text” to “system that acts in a repo.”
 
+### Chapter arc (owner wording, feedback round 3 — keep this order)
+
+> Models got good at outputting tokens → we taught the models to follow rules
+> → we taught them to output JSON objects to code tool calls → that led to
+> agentic AI by having harnesses giving the agents the ability to operate on
+> files and using bash commands.
+
+Slide order now follows that chain: `tokens-to-agents` (staircase overview) →
+`tool-calling` → `tools-reality` → `what-is-agentic` (synthesis equation) →
+`chat-vs-agent` (interaction-mode contrast) → `turn-loop` → `agent-loop` → …
+
 ### Core idea (owner wording — keep this)
 
 > The model has been given the ability to **call tools** by generating **JSON objects** (or similar structured payloads). A **scaffold / harness** captures that output and **translates** it into **actual tool calls** (read file, run terminal, etc.).

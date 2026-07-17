@@ -3,6 +3,7 @@ import { AgentEquation } from "../../components/diagrams/AgentEquation";
 import { EvolutionTimeline } from "../../components/diagrams/EvolutionTimeline";
 import { FailureModes } from "../../components/diagrams/FailureModes";
 import { LandmarkPapers } from "../../components/diagrams/LandmarkPapers";
+import { TokensToAgents } from "../../components/diagrams/TokensToAgents";
 import { ToolCallBridge } from "../../components/diagrams/ToolCallBridge";
 import { ToolReach } from "../../components/diagrams/ToolReach";
 import { TurnLoop } from "../../components/diagrams/TurnLoop";
@@ -92,6 +93,34 @@ export const foundationsSlides: SlideData[] = [
     content: <EvolutionTimeline />,
   },
   {
+    id: "tokens-to-agents",
+    title: "How we got agents",
+    eyebrow: "Foundations · the causal chain",
+    variant: "diagram",
+    content: <TokensToAgents />,
+  },
+  {
+    id: "tool-calling",
+    title: "From text to action — tool calling",
+    eyebrow: "Foundations · the bridge",
+    variant: "diagram",
+    content: <ToolCallBridge />,
+  },
+  {
+    id: "tools-reality",
+    title: "Tools that touch reality",
+    eyebrow: "Foundations",
+    variant: "diagram",
+    content: <ToolReach />,
+  },
+  {
+    id: "what-is-agentic",
+    title: "What is agentic AI?",
+    eyebrow: "Foundations",
+    variant: "diagram",
+    content: <AgentEquation />,
+  },
+  {
     id: "chat-vs-agent",
     title: "Completion, chat, agent",
     eyebrow: "Foundations",
@@ -127,27 +156,6 @@ export const foundationsSlides: SlideData[] = [
         </div>
       </div>
     ),
-  },
-  {
-    id: "what-is-agentic",
-    title: "What is agentic AI?",
-    eyebrow: "Foundations",
-    variant: "diagram",
-    content: <AgentEquation />,
-  },
-  {
-    id: "tool-calling",
-    title: "From text to action — tool calling",
-    eyebrow: "Foundations · the bridge",
-    variant: "diagram",
-    content: <ToolCallBridge />,
-  },
-  {
-    id: "tools-reality",
-    title: "Tools that touch reality",
-    eyebrow: "Foundations",
-    variant: "diagram",
-    content: <ToolReach />,
   },
   {
     id: "turn-loop",
