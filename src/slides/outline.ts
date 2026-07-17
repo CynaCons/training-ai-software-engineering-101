@@ -244,6 +244,22 @@ export const deckOutline: OutlineNode[] = [
         ],
       },
       {
+        id: "methodology-srs-group",
+        label: "SRS.md",
+        children: [
+          {
+            id: "methodology-srs",
+            label: "Requirements as the contract",
+            slideId: "methodology-srs",
+          },
+          {
+            id: "methodology-srs-scale",
+            label: "Traceability at scale",
+            slideId: "methodology-srs-scale",
+          },
+        ],
+      },
+      {
         id: "methodology-plan-group",
         label: "PLAN.md",
         children: [

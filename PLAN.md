@@ -1,5 +1,28 @@
 # PLAN.md — AI Software Engineering 101
 
+## Iteration: feedback round 4 (2026-07-17) — COMPLETE
+
+Owner ask: add requirements/SRS.md practice to the methodology section, using
+real snippets from the PowerTimeline repo. Push straight to the mainline
+(no PR).
+
+- [x] Studied PowerTimeline SRS system (cloned repo): `SRS.md` single source of
+      truth, ~30 per-area fragments + `SRS_INDEX.md` dashboard, stable
+      `CC-REQ-<AREA>-<NNN>` IDs, table of acceptance/code/tests/status, lifecycle
+      Proposed → Approved → Implemented → Verified, ~407 requirements tracked.
+- [x] New slide `methodology-srs` (SrsTraceability): PRD → requirement (stable
+      ID) → acceptance → code → tests → status chain, beside a real snippet of
+      `CC-REQ-ZOOM-001` from `docs/SRS_ZOOM.md`.
+- [x] New slide `methodology-srs-scale` (SrsDashboard): real coverage numbers
+      (~407 reqs, 55% implemented, 42% verified), per-area implemented/verified
+      bars, status-lifecycle strip. Positions agents as making ASPICE-style
+      traceability cheap.
+- [x] Placed both as a new `SRS.md` outline group between PRD.md and PLAN.md;
+      synced `outline.ts`, smoke sequence, `docs/CONTENT_OUTLINE.md` (F1b).
+- [x] Verify: `npm run smoke` (9/9 + build clean) + browser check of both
+      slides at 1280×720, console clean.
+- [x] Push straight to `main` (owner approved, no PR).
+
 ## Iteration: feedback round 3 (2026-07-17) — COMPLETE
 
 Owner feedback (photo of review notes, 12 points): six content additions

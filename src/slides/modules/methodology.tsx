@@ -15,6 +15,8 @@ import { ReferenceGrid } from "../../components/diagrams/ReferenceGrid";
 import { RefineSpiral } from "../../components/diagrams/RefineSpiral";
 import { SelfUpdatingDocs } from "../../components/diagrams/SelfUpdatingDocs";
 import { SkillCapsule } from "../../components/diagrams/SkillCapsule";
+import { SrsDashboard } from "../../components/diagrams/SrsDashboard";
+import { SrsTraceability } from "../../components/diagrams/SrsTraceability";
 import type { SlideData } from "../types";
 
 /**
@@ -89,6 +91,20 @@ export const methodologySlides: SlideData[] = [
     eyebrow: "Methodology · vision",
     variant: "diagram",
     content: <RefineSpiral />,
+  },
+  {
+    id: "methodology-srs",
+    title: "SRS.md — requirements as the contract",
+    eyebrow: "Methodology · requirements",
+    variant: "diagram",
+    content: <SrsTraceability />,
+  },
+  {
+    id: "methodology-srs-scale",
+    title: "Traceability at scale",
+    eyebrow: "Methodology · requirements",
+    variant: "diagram",
+    content: <SrsDashboard />,
   },
   {
     id: "methodology-plan",

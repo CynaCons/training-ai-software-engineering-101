@@ -94,6 +94,8 @@ describe("smoke", () => {
       "methodology-open",
       "methodology-prd",
       "methodology-prd-iterate",
+      "methodology-srs",
+      "methodology-srs-scale",
       "methodology-plan",
       "methodology-checklists",
       "methodology-plan-mode",

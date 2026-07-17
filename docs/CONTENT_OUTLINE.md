@@ -348,6 +348,30 @@ Diagram-led slides (not bullet dumps).
 
 *Slides:* `methodology-prd`, `methodology-prd-iterate`
 
+### F1b — SRS.md: requirements as the contract (owner, round 4)
+
+Between vision (PRD) and execution (PLAN) sits the **requirements layer**.
+Owner practice, taken from the PowerTimeline repo (ASPICE-style SRS with
+traceability):
+
+- **`SRS.md` is the single source of truth** for requirements; large systems
+  split it into per-area fragments (`SRS_LAYOUT.md`, `SRS_ZOOM.md`, …) plus an
+  `SRS_INDEX.md` dashboard
+- Every requirement has a **stable ID** (`CC-REQ-<AREA>-<NNN>`) and a table
+  row: **acceptance criteria · code references · linked tests · status**
+- **Status lifecycle:** Proposed → Approved → Implemented → Verified
+- Real example on the slide: `CC-REQ-ZOOM-001` (cursor-anchored zoom), with its
+  acceptance bullets, `src/app/hooks/useViewWindow.ts`, tests `v5/17·20·24`
+- **Payoff at scale:** PowerTimeline tracks ~407 requirements (≈55% implemented,
+  ≈42% verified) in one dashboard — the agent writes, links, and status-tracks
+  them as it works, so ASPICE-style traceability is a byproduct of the loop,
+  not a separate project
+- Requirements trace all the way to tests → this connects directly to the
+  "closing the loop" theme later in the chapter
+
+*Slides:* `methodology-srs` (traceability chain + real snippet),
+`methodology-srs-scale` (coverage dashboard + lifecycle)
+
 ### F2 — PLAN.md (most important)
 
 - Split product development into **iterations and sub-iterations**  
