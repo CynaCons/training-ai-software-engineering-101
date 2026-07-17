@@ -37,13 +37,19 @@ const MILESTONES = [
     title: "Coding agents",
     detail: "CLIs that work a repo on their own",
     era: "agentic",
+  },
+  {
+    year: "Jul 2026",
+    title: "Agent teams",
+    detail: "Orchestrated agents work goals in parallel",
+    era: "agentic",
     now: true,
   },
 ] as const;
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-/** Eight years from one paper to agents in your terminal. */
+/** Nine years from one paper to agent teams in your terminal. */
 export function EvolutionTimeline() {
   const reduceMotion = useReducedMotion();
 
@@ -51,7 +57,7 @@ export function EvolutionTimeline() {
     <div
       className="evo"
       role="group"
-      aria-label="Timeline from the 2017 Transformer paper to 2025 coding agents"
+      aria-label="Timeline from the 2017 Transformer paper to agent teams in July 2026"
     >
       <div className="evo__track">
         <motion.i
@@ -99,8 +105,8 @@ export function EvolutionTimeline() {
         ))}
       </div>
       <p className="evo__caption">
-        Eight years from one paper to agents in your terminal. The left half is
-        research history — the right half is why <strong>this training
+        Nine years from one paper to agent teams in your terminal. The left
+        half is research history — the right half is why <strong>this training
         exists</strong>: once models could call tools, software work changed.
       </p>
     </div>

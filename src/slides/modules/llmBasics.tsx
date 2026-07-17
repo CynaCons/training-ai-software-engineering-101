@@ -1,4 +1,5 @@
 import { AttentionMap } from "../../components/diagrams/AttentionMap";
+import { ParameterScale } from "../../components/diagrams/ParameterScale";
 import { TokenStream } from "../../components/diagrams/TokenStream";
 import { TransformerStack } from "../../components/diagrams/TransformerStack";
 import type { SlideData } from "../types";
@@ -69,5 +70,12 @@ export const llmBasicsSlides: SlideData[] = [
     eyebrow: "Concepts · basic",
     variant: "diagram",
     content: <TransformerStack />,
+  },
+  {
+    id: "llm-parameters",
+    title: "Parameters & scale",
+    eyebrow: "Concepts · basic",
+    variant: "diagram",
+    content: <ParameterScale />,
   },
 ];

@@ -36,6 +36,11 @@ export const deckOutline: OutlineNode[] = [
       { id: "llm-tokens", label: "Tokens", slideId: "llm-tokens" },
       { id: "llm-attention", label: "Attention", slideId: "llm-attention" },
       { id: "llm-transformers", label: "Transformers", slideId: "llm-transformers" },
+      {
+        id: "llm-parameters",
+        label: "Parameters & scale",
+        slideId: "llm-parameters",
+      },
     ],
   },
   {

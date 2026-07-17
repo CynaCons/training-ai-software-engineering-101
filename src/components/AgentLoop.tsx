@@ -79,7 +79,12 @@ export function AgentLoop() {
               strokeLinecap="round"
               strokeDasharray={`${(2 * Math.PI * 38) / PHASES.length} ${2 * Math.PI * 38}`}
               initial={false}
-              animate={{ rotate: activePhase * (360 / PHASES.length) }}
+              // Dash starts at 3 o'clock; nodes start at 12. Shift back 90°
+              // plus half a segment so the arc stays centred on the active node.
+              animate={{
+                rotate:
+                  activePhase * (360 / PHASES.length) - 90 - 180 / PHASES.length,
+              }}
               style={{ transformOrigin: "50px 50px" }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             />

@@ -45,6 +45,7 @@ describe("smoke", () => {
       "llm-tokens",
       "llm-attention",
       "llm-transformers",
+      "llm-parameters",
       "llm-advanced-open",
       "llm-arch-2017",
       "llm-arch-block",
