@@ -162,23 +162,17 @@ export function PositionalSignal() {
                 <motion.g
                   animate={{ rotate: 360 }}
                   transition={{ duration: 2.2, repeat: Infinity, ease: "linear" }}
-                  style={{ transformOrigin: `${C}px ${C}px`, originX: `${C}px`, originY: `${C}px` }}
+                  style={{ transformOrigin: `${C}px ${C}px`, transformBox: "view-box" }}
                 >
                   <Arrow deg={0} cls="rope__vec rope__vec--accent" />
                 </motion.g>
                 <motion.g
                   animate={{ rotate: 360 }}
                   transition={{ duration: 6.5, repeat: Infinity, ease: "linear" }}
-                  style={{ transformOrigin: `${C}px ${C}px`, originX: `${C}px`, originY: `${C}px` }}
+                  style={{ transformOrigin: `${C}px ${C}px`, transformBox: "view-box" }}
                 >
                   <Arrow deg={90} cls="rope__vec rope__vec--warm" r={40} />
                 </motion.g>
-                <text className="rope__gap" x={C + 22} y={C - 40}>
-                  fast
-                </text>
-                <text className="rope__gap" x={C + 14} y={C + 30}>
-                  slow
-                </text>
               </>
             )}
           </svg>

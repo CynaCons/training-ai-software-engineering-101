@@ -1689,11 +1689,15 @@
 .moe-router__experts {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.45rem;
+  gap: 0.5rem;
 }
 
 .moe-router__expert {
-  padding: 0.95rem;
+  min-height: 3.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem;
   text-align: center;
   font-family: var(--font-display);
   font-size: 0.95rem;
@@ -1701,7 +1705,8 @@
   border: 1px dashed var(--panel-border);
   color: var(--text-muted);
   background: var(--ink);
-  transition: box-shadow 0.35s ease;
+  transition: box-shadow 0.35s ease, border-color 0.35s ease,
+    background 0.35s ease, color 0.35s ease;
 }
 
 .moe-router__expert.is-hot {

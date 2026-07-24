@@ -77,10 +77,9 @@ export function MoERouter() {
               <motion.div
                 key={name}
                 className={`moe-router__expert ${on ? "is-hot" : ""}`}
-                animate={{
-                  scale: on ? 1.08 : 0.96,
-                  opacity: on ? 1 : 0.4,
-                }}
+                initial={false}
+                animate={{ opacity: on ? 1 : 0.4 }}
+                transition={{ duration: 0.3 }}
               >
                 {name}
               </motion.div>
