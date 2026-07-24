@@ -1,156 +1,145 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { DiagramPlaybar } from "./DiagramPlaybar";
 import { useAutoplayStep } from "../../hooks/useAutoplayStep";
 import "./diagrams.css";
 
-const PHASES = [
-  {
-    id: "in",
-    label: "Input",
-    title: "Input: a list of vectors",
-    detail:
-      "Each token is already a number vector (“embedding”). The block’s job is to refine those vectors so the next layer — and eventually the next-token guess — is smarter.",
-  },
-  {
-    id: "attn",
-    label: "Attention",
-    title: "Attention = mix across positions",
-    detail:
-      "Analogy: in a meeting, everyone can listen to everyone else, then update their notes. Here each token gathers useful info from other tokens (e.g. a variable use looking at its definition).",
-  },
-  {
-    id: "res1",
-    label: "Add & Norm",
-    title: "Residual: keep the old notes too",
-    detail:
-      "We add the attention result back onto the original vector (x + Attn), then LayerNorm steadies the scale. Without this skip, deep stacks forget or blow up — like overwriting a file with no backup.",
-  },
-  {
-    id: "ffn",
-    label: "FFN",
-    title: "FFN = think locally per token",
-    detail:
-      "After mixing with others, each token runs the same small neural net by itself (two linear layers). Attention shares; FFN elaborates. In MoE models, this slot becomes “pick an expert.”",
-  },
-  {
-    id: "res2",
-    label: "Add & Norm",
-    title: "Again: add, normalize, pass on",
-    detail:
-      "Same residual trick after the FFN. Output x′ is just a better list of vectors for the next identical block. Stack dozens of these → a full LLM.",
-  },
+const STEPS = [
+  { id: "stream", label: "Stream" },
+  { id: "attn", label: "Attention" },
+  { id: "ffn", label: "Feed-forward" },
+  { id: "stack", label: "× N" },
 ] as const;
 
-/** Animated walkthrough of one transformer block. */
+const DEPTHS = [
+  { name: "GPT-2", n: 12 },
+  { name: "Llama-3-8B", n: 32 },
+  { name: "Llama-3-70B", n: 80 },
+  { name: "GPT-3", n: 96 },
+];
+
+/** One block: where the weight matrices are, what runs, how many stack. */
 export function TransformerBlock() {
   const { step, setStep, next, playing, toggle } = useAutoplayStep(
-    PHASES.length,
-    2000,
+    STEPS.length,
+    2600,
   );
-  const phase = PHASES[step]!;
 
   return (
     <div
-      className="xfmr-block xfmr-block--live"
+      className="tblock"
       role="group"
-      aria-label="Animated transformer block anatomy"
+      aria-label="Anatomy of one transformer block: weight matrices, operations, and stack depth"
     >
       <DiagramPlaybar
         playing={playing}
         onToggle={toggle}
         onNext={next}
-        label="Block walkthrough"
-        steps={PHASES.map((p) => ({ id: p.id, label: p.label }))}
+        label="Inside one block"
+        steps={STEPS.map((s) => ({ id: s.id, label: s.label }))}
         step={step}
         onStep={setStep}
       />
 
-      <div className="xfmr-block__live">
-        <div className="xfmr-block__schematic" aria-hidden>
+      <div className="tblock__stage">
+        <div className="tblock__schematic">
+          <div className={`tblock__stream ${step === 0 ? "is-hot" : ""}`}>
+            residual stream · one <b>d</b>-vector per token
+          </div>
+
           <motion.div
-            className={`xfmr-block__chip ${step === 0 ? "is-hot" : ""}`}
-            animate={{ scale: step === 0 ? 1.04 : 1 }}
+            className={`tblock__sub ${step === 1 ? "is-hot" : ""}`}
+            animate={{ opacity: step >= 1 ? 1 : 0.55 }}
           >
-            x
-          </motion.div>
-          <span className="xfmr-block__flow-arrow">↓</span>
-          <motion.div
-            className={`xfmr-block__chip xfmr-block__chip--wide ${step === 1 ? "is-hot" : ""}`}
-            animate={{ scale: step === 1 ? 1.04 : 1 }}
-          >
-            Multi-head attention
-          </motion.div>
-          <motion.div
-            className={`xfmr-block__chip xfmr-block__chip--res ${step === 2 ? "is-hot" : ""}`}
-            animate={{ scale: step === 2 ? 1.04 : 1 }}
-          >
-            ⊕ Add &amp; Norm
-          </motion.div>
-          <span className="xfmr-block__flow-arrow">↓</span>
-          <motion.div
-            className={`xfmr-block__chip xfmr-block__chip--wide xfmr-block__chip--ffn ${step === 3 ? "is-hot" : ""}`}
-            animate={{ scale: step === 3 ? 1.04 : 1 }}
-          >
-            Feed-forward
-          </motion.div>
-          <motion.div
-            className={`xfmr-block__chip xfmr-block__chip--res ${step === 4 ? "is-hot" : ""}`}
-            animate={{ scale: step === 4 ? 1.04 : 1 }}
-          >
-            ⊕ Add &amp; Norm
-          </motion.div>
-          <span className="xfmr-block__flow-arrow">↓</span>
-          <motion.div
-            className="xfmr-block__chip"
-            animate={{ opacity: step === 4 ? 1 : 0.45 }}
-          >
-            x′
+            <span className="tblock__sub-tag">Self-attention</span>
+            <div className="tblock__ops">
+              <span className="tblock__op">LayerNorm</span>
+              <span className="tblock__arrow">→</span>
+              <span className="tblock__w">
+                W<sub>Q</sub> W<sub>K</sub> W<sub>V</sub>
+                <em>d×d</em>
+              </span>
+              <span className="tblock__arrow">→</span>
+              <span className="tblock__op tblock__op--calc">
+                softmax(QKᵀ/√d)·V
+              </span>
+              <span className="tblock__arrow">→</span>
+              <span className="tblock__w">
+                W<sub>O</sub>
+                <em>d×d</em>
+              </span>
+              <span className="tblock__add">⊕</span>
+            </div>
           </motion.div>
 
-          {/* residual skip lines */}
-          <svg className="xfmr-block__skips" viewBox="0 0 120 200" preserveAspectRatio="none">
-            <motion.path
-              d="M108 28 V72"
-              fill="none"
-              stroke="var(--accent)"
-              strokeWidth="1.5"
-              strokeDasharray="3 3"
-              animate={{ opacity: step === 2 ? 1 : 0.25 }}
-            />
-            <motion.path
-              d="M108 108 V152"
-              fill="none"
-              stroke="var(--warm)"
-              strokeWidth="1.5"
-              strokeDasharray="3 3"
-              animate={{ opacity: step === 4 ? 1 : 0.25 }}
-            />
-          </svg>
+          <motion.div
+            className={`tblock__sub tblock__sub--ffn ${step === 2 ? "is-hot" : ""}`}
+            animate={{ opacity: step >= 2 ? 1 : 0.55 }}
+          >
+            <span className="tblock__sub-tag">Feed-forward (per token)</span>
+            <div className="tblock__ops">
+              <span className="tblock__op">LayerNorm</span>
+              <span className="tblock__arrow">→</span>
+              <span className="tblock__w tblock__w--warm">
+                W<sub>up</sub>
+                <em>d×4d</em>
+              </span>
+              <span className="tblock__arrow">→</span>
+              <span className="tblock__op tblock__op--calc">GELU</span>
+              <span className="tblock__arrow">→</span>
+              <span className="tblock__w tblock__w--warm">
+                W<sub>down</sub>
+                <em>4d×d</em>
+              </span>
+              <span className="tblock__add">⊕</span>
+            </div>
+          </motion.div>
+
+          <div className={`tblock__repeat ${step === 3 ? "is-hot" : ""}`}>
+            ↻ same block, stacked <b>× N</b>
+          </div>
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={phase.id}
-            className="xfmr-block__detail"
-            initial={{ opacity: 0, x: 12 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -8 }}
-            transition={{ duration: 0.28 }}
-          >
-            <span className="xfmr-block__detail-idx">
-              {String(step + 1).padStart(2, "0")} / {PHASES.length}
-            </span>
-            <h3>{phase.title}</h3>
-            <p>{phase.detail}</p>
-          </motion.div>
-        </AnimatePresence>
+        <div className="tblock__side">
+          <div className="tblock__card">
+            <span className="tblock__card-tag">where the weights live</span>
+            <ul>
+              <li>
+                <code>W_Q, W_K, W_V, W_O</code> — attention, 4 × (d×d)
+              </li>
+              <li>
+                <code>W_up, W_down</code> — FFN, ~⅔ of the block’s params
+              </li>
+              <li>
+                LayerNorm scale/bias — tiny; the matrices hold nearly all of it
+              </li>
+            </ul>
+            <div className="tblock__formula">
+              ≈ 12 · d² weights per block
+            </div>
+          </div>
+
+          <div className={`tblock__card ${step === 3 ? "is-hot" : ""}`}>
+            <span className="tblock__card-tag">how many blocks · N = “layers”</span>
+            <div className="tblock__depths">
+              {DEPTHS.map((d) => (
+                <div key={d.name} className="tblock__depth">
+                  <span className="tblock__depth-name">{d.name}</span>
+                  <span className="tblock__depth-bar">
+                    <i style={{ width: `${(d.n / 96) * 100}%` }} />
+                  </span>
+                  <span className="tblock__depth-n">{d.n}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
-      <p className="xfmr-block__caption">
-        <strong>Why you care:</strong> “layers” on a model card ≈ how many of these
-        blocks are stacked. Deeper isn’t magic — it’s the same recipe repeated.
-        Modern LLMs often use <em>pre-norm</em> (normalize before the sublayer),
-        same idea.
+      <p className="tblock__caption">
+        <strong>The whole model is this block, repeated.</strong> Each one reads
+        the residual stream, runs attention then a feed-forward net — all matrix
+        multiplies plus softmax/GELU — and adds the result back. Multiply
+        params-per-block by N and you get the model’s size.
       </p>
     </div>
   );
